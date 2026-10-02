@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>BiteRush</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- LOGIN PAGE -->
+    <div id="login" class="page">
+
+        <h1>BiteRush</h1>
+        <h2>Login</h2>
+
+        <input type="text" id="loginUser" placeholder="Username">
+
+        <input type="password" id="loginPass" placeholder="Password">
+
+        <br>
+
+        <button onclick="loginUser()">Login</button>
+
+        <p>
+            New user?
+            <a onclick="showRegister()">Register here</a>
+        </p>
+
+    </div>
+
+
+    <!-- REGISTER PAGE -->
+    <div id="register" class="page">
+
+        <h1>BiteRush</h1>
+        <h2>Register</h2>
+
+        <input type="text" id="regName" placeholder="Enter Name">
+
+        <input type="text" id="regUser" placeholder="Create Username">
+
+        <input type="password" id="regPass" placeholder="Create Password">
+
+        <br>
+
+        <button onclick="registerUser()">Register</button>
+
+        <p>
+            Already have an account?
+            <a onclick="showLogin()">Login here</a>
+        </p>
+
+    </div>
+
+
+    <!-- HOME PAGE -->
+    <div id="home">
+
+        <header>
+
+            <h1>BiteRush</h1>
+
+            <p>Order your Favourite Food</p>
+
+            <button onclick="logout()">Logout</button>
+
+        </header>
+
+
+        <h2>Restaurants</h2>
+
+
+        <div class="restaurants">
+
+            <div class="card">
+                <h3>Dominos</h3>
+                <button onclick="showMenu('Dominos')">View</button>
+            </div>
+
+            <div class="card">
+                <h3>Pizza Hut</h3>
+                <button onclick="showMenu('Pizza Hut')">View</button>
+            </div>
+
+            <div class="card">
+                <h3>A2B</h3>
+                <button onclick="showMenu('A2B')">View</button>
+            </div>
+
+            <div class="card">
+                <h3>Indian Kitchen</h3>
+                <button onclick="showMenu('Indian Kitchen')">View</button>
+            </div>
+
+            <div class="card">
+                <h3>Kongu Porota</h3>
+                <button onclick="showMenu('Kongu Porota')">View</button>
+            </div>
+
+            <div class="card">
+                <h3>Fresh Juice</h3>
+                <button onclick="showMenu('Fresh Juice')">View</button>
+            </div>
+
+        </div>
+
+
+        <!-- FOOD MENU -->
+
+        <div id="menu">
+
+            <h2>Food Menu</h2>
+
+            <div id="foodItems">
+                Select a restaurant
+            </div>
+
+        </div>
+
+
+        <!-- CART -->
+
+        <div id="cart">
+
+            <h2>Cart</h2>
+
+            <p id="cartItems">
+                No items added
+            </p>
+
+            <h3>
+                Total: ₹<span id="total">0</span>
+            </h3>
+
+            <button onclick="placeOrder()">
+                Place Order
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
