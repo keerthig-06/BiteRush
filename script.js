@@ -3,7 +3,6 @@ let total = 0;
 
 let items = [];
 
-
 let menu = {
 
     "Dominos": [
@@ -47,7 +46,6 @@ let menu = {
 function showRegister() {
 
     document.getElementById("login").style.display = "none";
-
     document.getElementById("register").style.display = "block";
 
 }
@@ -58,7 +56,6 @@ function showRegister() {
 function showLogin() {
 
     document.getElementById("register").style.display = "none";
-
     document.getElementById("login").style.display = "block";
 
 }
@@ -68,30 +65,20 @@ function showLogin() {
 
 function registerUser() {
 
-    let name =
-        document.getElementById("regName").value;
-
-    let username =
-        document.getElementById("regUser").value;
-
-    let password =
-        document.getElementById("regPass").value;
-
+    let name = document.getElementById("regName").value.trim();
+    let username = document.getElementById("regUser").value.trim();
+    let password = document.getElementById("regPass").value;
 
     if (name == "" || username == "" || password == "") {
 
         alert("Please fill all fields");
-
         return;
+
     }
 
-
     localStorage.setItem("name", name);
-
     localStorage.setItem("username", username);
-
     localStorage.setItem("password", password);
-
 
     alert("Registration successful!");
 
@@ -104,26 +91,17 @@ function registerUser() {
 
 function loginUser() {
 
-    let username =
-        document.getElementById("loginUser").value;
+    let username = document.getElementById("loginUser").value.trim();
+    let password = document.getElementById("loginPass").value;
 
-    let password =
-        document.getElementById("loginPass").value;
+    let savedUser = localStorage.getItem("username");
+    let savedPass = localStorage.getItem("password");
 
-
-    let savedUser =
-        localStorage.getItem("username");
-
-    let savedPass =
-        localStorage.getItem("password");
-
-
-    if (username == savedUser && password == savedPass) {
+    if (username == savedUser && password == savedPass && savedUser != null) {
 
         alert("Login successful!");
 
         document.getElementById("login").style.display = "none";
-
         document.getElementById("home").style.display = "block";
 
     }
@@ -142,7 +120,6 @@ function loginUser() {
 function logout() {
 
     document.getElementById("home").style.display = "none";
-
     document.getElementById("login").style.display = "block";
 
 }
@@ -152,13 +129,9 @@ function logout() {
 
 function showMenu(restaurant) {
 
-    let foodItems =
-        document.getElementById("foodItems");
+    let foodItems = document.getElementById("foodItems");
 
-
-    foodItems.innerHTML =
-        "<h3>" + restaurant + "</h3>";
-
+    foodItems.innerHTML = "<h3>" + restaurant + "</h3>";
 
     for (let i = 0; i < menu[restaurant].length; i++) {
 
@@ -197,7 +170,6 @@ function addItem(name, price) {
 
     total = total + price;
 
-
     document.getElementById("cartItems").innerHTML =
         items.join(", ");
 
@@ -214,39 +186,41 @@ function placeOrder() {
     if (items.length == 0) {
 
         alert("Please add items to your cart");
-
         return;
 
     }
-
 
     let customerName = localStorage.getItem("name");
 
-    let address = prompt("Enter your delivery address");
+    if (!customerName) {
 
-
-    if (address == null || address.trim() == "") {
-
-        alert("Please enter your delivery address");
-
+        alert("Please login again");
         return;
 
     }
 
+    let address = prompt("Enter your delivery address");
 
-    let orderId = "BR" + Math.floor(100000 + Math.random() * 900000);
+    if (address == null || address.trim() == "") {
 
+        alert("Please enter a valid delivery address");
+        return;
 
-    localStorage.setItem("orderId", orderId);
+    }
 
-    localStorage.setItem("orderedItems", items.join(", "));
+    let orderId = "BR" + Date.now();
 
-    localStorage.setItem("customerName", customerName);
+    let orderDetails = {
 
-    localStorage.setItem("customerAddress", address);
+        orderId: orderId,
+        orderedItems: items.join(", "),
+        customerName: customerName,
+        customerAddress: address.trim(),
+        orderTotal: total
 
-    localStorage.setItem("orderTotal", total);
+    };
 
+    localStorage.setItem("biteRushOrder", JSON.stringify(orderDetails));
 
     window.location.href = "order.html";
 
