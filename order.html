@@ -40,7 +40,40 @@
 
     </div>
 
-    <script src="script.js"></script>
+    <script>
+
+        let order = JSON.parse(localStorage.getItem("biteRushOrder"));
+
+        if (order) {
+
+            document.getElementById("orderId").textContent =
+                order.orderId;
+
+            document.getElementById("orderedItems").textContent =
+                order.orderedItems;
+
+            document.getElementById("customerName").textContent =
+                order.customerName;
+
+            document.getElementById("customerAddress").textContent =
+                order.customerAddress;
+
+            document.getElementById("orderTotal").textContent =
+                order.orderTotal;
+
+        }
+
+        else {
+
+            document.querySelector(".page").innerHTML =
+                "<h1>No Order Found</h1>" +
+                "<p>Please place an order first.</p>" +
+                "<button onclick=\"window.location.href='index.html'\">" +
+                "Back to Food Explore</button>";
+
+        }
+
+    </script>
 
 </body>
 
