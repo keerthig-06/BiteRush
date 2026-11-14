@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 
@@ -17,11 +18,29 @@
 
         <p>Thank you for ordering.</p>
 
-        <button onclick="window.location.href='food.html'">
+        <h2>Order Details</h2>
+
+        <p>Order ID: <span id="orderId"></span></p>
+
+        <h3>Ordered Items</h3>
+
+        <p id="orderedItems"></p>
+
+        <h3>Customer Details</h3>
+
+        <p>Name: <span id="customerName"></span></p>
+
+        <p>Address: <span id="customerAddress"></span></p>
+
+        <h3>Total Amount: ₹<span id="orderTotal"></span></h3>
+
+        <button onclick="window.location.href='index.html'">
             Back to Food Explore
         </button>
 
     </div>
+
+    <script src="script.js"></script>
 
 </body>
 
