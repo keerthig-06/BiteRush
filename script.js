@@ -1,3 +1,4 @@
+
 let total = 0;
 
 let items = [];
@@ -209,6 +210,43 @@ function addItem(name, price) {
 // PLACE ORDER
 
 function placeOrder() {
+
+    if (items.length == 0) {
+
+        alert("Please add items to your cart");
+
+        return;
+
+    }
+
+
+    let customerName = localStorage.getItem("name");
+
+    let address = prompt("Enter your delivery address");
+
+
+    if (address == null || address.trim() == "") {
+
+        alert("Please enter your delivery address");
+
+        return;
+
+    }
+
+
+    let orderId = "BR" + Math.floor(100000 + Math.random() * 900000);
+
+
+    localStorage.setItem("orderId", orderId);
+
+    localStorage.setItem("orderedItems", items.join(", "));
+
+    localStorage.setItem("customerName", customerName);
+
+    localStorage.setItem("customerAddress", address);
+
+    localStorage.setItem("orderTotal", total);
+
 
     window.location.href = "order.html";
 
